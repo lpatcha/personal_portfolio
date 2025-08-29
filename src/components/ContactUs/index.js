@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState, useEffect, use } from 'react';
 import { useRef } from 'react';
-import {submitLeadInfo} from '../../pages/utilities/index';
+import {submitLeadInfo} from '../../utilities/index';
 
 export default function ContactUs(){
 
