@@ -21,7 +21,7 @@ export default function ContactUs(){
     },[timer]);
 
     const clearFromError = ()=>{
-        setTimeout(()=>{
+       timer = setTimeout(()=>{
             if(errors.failedToInsert){
                 setErrors({})
             }
@@ -48,6 +48,9 @@ export default function ContactUs(){
     const [errors, setErrors] = useState({
         
     });
+
+    console.log(errors);
+
 
     const formSubmit = async (e) => {
         e.preventDefault();
@@ -89,6 +92,8 @@ export default function ContactUs(){
         }
         
         let result = await submitLeadInfo(form);
+        console.log("I am here");
+        console.log(result);
 
         if(!result){
             errors.failedToInsert = true;
