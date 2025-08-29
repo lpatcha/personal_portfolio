@@ -1,20 +1,25 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApps, getApp} from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } = "firebase/analytics";
 import { collection, addDoc, serverTimestamp, getFirestore} from 'firebase/firestore';
 
 
 let firebaseConfig;
+let configSource = "Unknown"; // To track where the config is coming from
 
-// Check if we're running in a deployed App Hosting environment
-// Firebase App Hosting injects window.FIREBASE_WEBAPP_CONFIG (or similar)
-// If it exists, use that config.
+if(typeof window !== 'undefined')
+    console.log(window);
+
 if (typeof window !== 'undefined' && (window.FIREBASE_WEBAPP_CONFIG || window.FIREBASE_CONFIG)) {
+    // This branch should be hit when deployed to App Hosting
     firebaseConfig = window.FIREBASE_WEBAPP_CONFIG || window.FIREBASE_CONFIG;
-    console.log("Using Firebase config from App Hosting (window object).");
+    configSource = "App Hosting Window Object";
+
+    // ****** CRITICAL LOG FOR DEPLOYED ENVIRONMENT ******
+    console.log("DEBUG: App Hosting Window Config:", firebaseConfig);
+
 } else {
-    // We are likely in a local development environment.
-    // Load config from process.env (requires a build tool like Webpack/Vite to process .env files)
+    // This branch is primarily for your local development environment
     firebaseConfig = {
         apiKey: process.env.NEXT_PUBLIC_API_KEY,
         authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
@@ -24,30 +29,39 @@ if (typeof window !== 'undefined' && (window.FIREBASE_WEBAPP_CONFIG || window.FI
         appId: process.env.NEXT_PUBLIC_APP_ID,
         measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
     };
-    console.log("Using Firebase config from local .env (process.env).");
+    configSource = "Local .env (NEXT_PUBLIC_)";
 
-    // Optional: Log the config being used locally (for debugging)
-    // console.log("Local Firebase Config:", firebaseConfig);
+    // ****** CRITICAL LOG FOR LOCAL DEVELOPMENT ******
+    console.log("DEBUG: Local .env Config:", firebaseConfig);
 }
-// Initialize Firebase
 
+// Log the final decision on where config came from
+console.log(`Using Firebase config from: ${configSource}`);
+
+// Log the final firebaseConfig object before initialization
+console.log("Final firebaseConfig object before initializeApp:", firebaseConfig);
+
+// Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-// const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app); // Re-enable if you want Analytics
 const db = getFirestore(app, 'leads-info');
-console.log(db);
+
+console.log("Firestore DB instance:", db); // Shows if Firestore object is valid
+
 const submitLeadInfo = async (leadInfo)=>{
     try{
+        console.log("Attempting to add document to Firestore 'leads-info' DB...");
         const docRef = await addDoc(collection(db, "leads"), {
             ...leadInfo,
             timeStamp : serverTimestamp()
-        }
-        );
+        });
+        console.log("Document successfully added with ID:", docRef.id);
         return true;
     }
     catch(e){
+        console.error("Error adding document to Firestore:", e); // This should now catch errors if any
         return false;
     }
-    return false;
 }
 
-export {submitLeadInfo}
+export {submitLeadInfo};
