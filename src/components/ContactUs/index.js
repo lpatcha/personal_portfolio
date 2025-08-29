@@ -21,7 +21,7 @@ export default function ContactUs(){
     },[timer]);
 
     const clearFromError = ()=>{
-        setInterval(()=>{
+        setTimeout(()=>{
             if(errors.failedToInsert){
                 setErrors({})
             }
