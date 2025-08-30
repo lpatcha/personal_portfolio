@@ -49,7 +49,7 @@ export default function ContactUs(){
         
     });
 
-    console.log(errors);
+
 
 
     const formSubmit = async (e) => {
@@ -92,8 +92,7 @@ export default function ContactUs(){
         }
         
         let result = await submitLeadInfo(form);
-        console.log("I am here");
-        console.log(result);
+       
 
         if(!result){
             errors.failedToInsert = true;

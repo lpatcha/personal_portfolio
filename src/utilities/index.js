@@ -3,22 +3,8 @@ import { initializeApp, getApps, getApp} from "firebase/app";
 // import { getAnalytics } = "firebase/analytics";
 import { collection, addDoc, serverTimestamp, getFirestore} from 'firebase/firestore';
 
-
 let firebaseConfig;
-let configSource = "Unknown"; // To track where the config is coming from
 
-if(typeof window !== 'undefined')
-    console.log(window);
-
-if (typeof window !== 'undefined' && (window.FIREBASE_WEBAPP_CONFIG || window.FIREBASE_CONFIG)) {
-    // This branch should be hit when deployed to App Hosting
-    firebaseConfig = window.FIREBASE_WEBAPP_CONFIG || window.FIREBASE_CONFIG;
-    configSource = "App Hosting Window Object";
-
-    // ****** CRITICAL LOG FOR DEPLOYED ENVIRONMENT ******
-    console.log("DEBUG: App Hosting Window Config:", firebaseConfig);
-
-} else {
     // This branch is primarily for your local development environment
     firebaseConfig = {
         apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -29,14 +15,6 @@ if (typeof window !== 'undefined' && (window.FIREBASE_WEBAPP_CONFIG || window.FI
         appId: process.env.NEXT_PUBLIC_APP_ID,
         measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
     };
-    configSource = "Local .env (NEXT_PUBLIC_)";
-
-    // ****** CRITICAL LOG FOR LOCAL DEVELOPMENT ******
-    console.log("DEBUG: Local .env Config:", firebaseConfig);
-}
-
-// Log the final decision on where config came from
-console.log(`Using Firebase config from: ${configSource}`);
 
 // Log the final firebaseConfig object before initialization
 console.log("Final firebaseConfig object before initializeApp:", firebaseConfig);

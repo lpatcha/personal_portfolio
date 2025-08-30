@@ -1,0 +1,49 @@
+# apphosting.yaml
+env:
+  # Firebase SDK Configuration Variables
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    secret: firebase-api-key # Reference to a secret in Cloud Secret Manager
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    secret: firebase-auth-domain # Reference to a secret
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    secret: firebase-project-id # Reference to a secret
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    secret: firebase-storage-bucket # Reference to a secret
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    secret: firebase-messaging-sender-id # Reference to a secret
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    secret: firebase-app-id # Reference to a secret
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    secret: firebase-measurement-id # Reference to a secret (for Analytics)
+    availability:
+      - BUILD
+      - RUNTIME
+
+# You can also add other runtime settings here if needed, like:
+# runConfig:
+#   minInstances: 0
+#   maxInstances: 2
