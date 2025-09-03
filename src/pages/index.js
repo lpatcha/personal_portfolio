@@ -4,6 +4,7 @@ import Rating from '@mui/material/Rating';
 import SkillSection from '../components/SkillSection/index';
 import Experience from "@/components/Experience";
 import ContactUs from "@/components/ContactUs";
+import Head from "next/head";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -867,6 +868,20 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Lokesh Patchala | Full Stack Developer Portfolio</title>
+        <meta
+          name="description"
+          content="Portfolio of Lokesh Patchala, a Full Stack Developer with 7+ years of experience in React, Angular, Spring Boot, Node.js, and cloud platforms."
+        />
+        <meta
+          name="keywords"
+          content="Full Stack Developer, React, Angular, Spring Boot, Node.js, AWS, Azure, GCP, Portfolio"
+        />
+        <meta name="author" content="Lokesh Patchala" />
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      </Head>
       <div className={`${inter.variable} bg-stone-50 max-md:text-sm`}>
         <section>
           <div className="relative h-[20vh]">
@@ -879,7 +894,7 @@ export default function Home() {
             <div className="absolute bg-[#00000075] h-[100%] w-[100%] z-1">
               <div className="container flex h-[100%] flex-row-reverse items-center space-x-4 space-x-reverse">
                 <a  className = "mr-3" href="https://www.linkedin.com/in/lokeshpatchala-61958217b/" target="_blank">{linkedinIcon()}</a>
-                <a href="/">{gitHub()}</a>
+                <a href="https://github.com/lpatcha">{gitHub()}</a>
               </div>
             </div>
           </div>

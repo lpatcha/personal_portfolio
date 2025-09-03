@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { useState, useEffect, use } from 'react';
 import { useRef } from 'react';
 import {submitLeadInfo} from '../../utilities/index';
+import Alert from '@mui/material/Alert';
 
 export default function ContactUs(){
 
@@ -11,22 +12,22 @@ export default function ContactUs(){
     const lastName = useRef(null);
     const phoneNumber = useRef(null);
     const comment = useRef(null);
-    let timer;
+    let timer = useRef(null);
 
      useEffect(()=>{
         return ()=>{
-            if(timer)
-                clearTimeout(timer);
+            if(timer.current)
+                clearTimeout(timer.current);
         }
-    },[timer]);
+    },[]);
 
-    const clearFromError = ()=>{
-       timer = setTimeout(()=>{
-            if(errors.failedToInsert){
-                setErrors({})
-            }
-        },2000);
-    }
+    // const clearFromError = (validate, timer)=>{
+    //    timer.current = setTimeout(()=>{
+    //         if(validate){
+    //             setErrors({});
+    //         }
+    //     },5000);
+    // }
 
     const requiredValidation = (value, type = "required")=>{
         if(!value.trim())
@@ -50,37 +51,35 @@ export default function ContactUs(){
     });
 
 
-
-
     const formSubmit = async (e) => {
         e.preventDefault();
-        let errors = {};
+        let newErrors = {};
 
         if(!requiredValidation(firstName?.current?.value || ''))
-            errors.firstName = true;
+            newErrors.firstName = true;
 
         if(!requiredValidation(lastName?.current?.value || ''))
-            errors.lastName = true;
+            newErrors.lastName = true;
 
         if(!requiredValidation(phoneNumber?.current?.value || ''))
-            errors.phoneNumber = true;
+            newErrors.phoneNumber = true;
 
         if(!requiredValidation(email?.current?.value, "email"))
-            errors.email = true;
+            newErrors.email = true;
 
       
         if(!requiredValidation(comment?.current?.value))
-            errors.comment = true;
+            newErrors.comment = true;
 
         if(!phoneNumberValidation(phoneNumber?.current?.value))
-            errors.phoneNumber = true;
+            newErrors.phoneNumber = true;
 
-        setErrors(errors);
 
-        if(errors.firstName || errors.lastName || errors.email || errors.comment || errors.phoneNumber)
+        if(newErrors.firstName || newErrors.lastName || newErrors.email || newErrors.comment || newErrors.phoneNumber)
         {
             //don't perform api call
-            return
+            setErrors(newErrors);
+            return;
         }
 
         let form = {
@@ -92,26 +91,36 @@ export default function ContactUs(){
         }
         
         let result = await submitLeadInfo(form);
-       
+    
 
         if(!result){
-            errors.failedToInsert = true;
-            clearFromError();
+            newErrors.failedToInsert = true;
+            timer  = setTimeout(()=>{
+                    setErrors({});
+            },5000);
         }
-        firstName?.current && (firstName.current.value= '');
-        lastName?.current && (lastName.current.value= '');
-        phoneNumber?.current && (phoneNumber.current.value = '');
-        email?.current && (email.current.value = '');
-        comment?.current && (comment.current.value = '');
-        phoneNumber?.current && (phoneNumber.current.value = '');
+        else{
+            newErrors.success = "Record inserted successfully";
+            timer  = setTimeout(()=>{
+                    setErrors({});
+            },5000);
 
-        setErrors(errors);
+            firstName?.current && (firstName.current.value= '');
+            lastName?.current && (lastName.current.value= '');
+            phoneNumber?.current && (phoneNumber.current.value = '');
+            email?.current && (email.current.value = '');
+            comment?.current && (comment.current.value = '');
+            phoneNumber?.current && (phoneNumber.current.value = '');
+        }
+
+        setErrors(newErrors);
     }
 
     return (<>
     <div >
         <form onSubmit={formSubmit} className = "max-w-[500px] rounded-lg mx-auto bg-stone-50 p-4">
             {errors.failedToInsert && <div><span className='text-red-950'>Something went wrong while inserting the record please try later</span></div>}
+            {errors.success && <Alert severity='success'>{errors.success}</Alert>}
             <div className = 'mt-2 flex flex-col items-center'>
             <TextField className = "mx-auto" inputRef = {firstName} label = "First Name" variant='outlined'/>
             {errors.firstName && <div><span className='text-red-950'>this field is required</span></div>}
