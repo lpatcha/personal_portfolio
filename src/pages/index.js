@@ -105,13 +105,42 @@ const response = {
       // }
     ],
     "projectDto": [
+        {
+          "id": 4,
+          "projectName": "",
+          "clientName": "Bank of America",
+          "location": "Plano, Texas, United States",
+          "role": "Sr. Java FullStack Developer",
+          "endDate": "Present",
+          "startDate": "02-01-2025",
+          "description": "",
+          "userId": 10,
+          "projectImageResponseDto": null,
+          "rolesAndResponsibilites": [
+            {
+              "id": 1,
+              "description": "Developed scalable web components and backend services capable of handling 3K–6K TPS, ensuring high performance with Cypress & K6 test automation.",
+              "projectId": 4
+            },
+            {
+              "id": 2,
+              "description": "Designed and deployed secure Spring Boot REST APIs, integrating Spring Security and Data JPA for robust service delivery.",
+              "projectId": 4
+            },
+            {
+              "id": 3,
+              "description": "Managed AWS infrastructure using Terraform, deploying applications on ECS Fargate and Lambda for efficient event-driven workflows.",
+              "projectId": 4
+            }
+          ]
+        },
       {
         "id": 1,
         "projectName": "",
         "clientName": "General Motors",
         "location": "Austin, Texas, USA",
         "role": "Java FullStack Developer",
-        "endDate": "Present",
+        "endDate": "01-01-2025",
         "startDate": "10-01-2022",
         "description": "",
         "userId": 10,
@@ -134,7 +163,7 @@ const response = {
           },
           {
             "id": 4,
-            "description": "Developed user interfaces which are cross-device compatible across various screen sizes.e",
+            "description": "Developed user interfaces which are cross-device compatible across various screen sizes.",
             "projectId": 1
           },
           {
@@ -150,8 +179,8 @@ const response = {
         "clientName": "Williams Sonoma",
         "location": "Costa Mesa, California, United States",
         "role": "Java Full Stack Developer",
-        "endDate": "07-01-2022",
-        "startDate": "09-02-2021",
+        "endDate": "09-01-2022",
+        "startDate": "07-02-2021",
         "description": "",
         "userId": 10,
         "projectImageResponseDto": null,
@@ -227,6 +256,69 @@ const response = {
           }
         ]
       },
+      {
+        "id": 5,
+        "projectName": "",
+        "clientName": "Covent Informatics",
+        "location": "Hyderabad, India",
+        "role": "Java Developer",
+        "endDate": "11-01-2029",
+        "startDate": "08-01-2018",
+        "description": "",
+        "userId": 10,
+        "projectImageResponseDto": null,
+        "rolesAndResponsibilites": [
+          {
+            "id": 1,
+            "description": " Developed responsive web applications using JSP, Servlets, and Spring MVC, ensuring cross-device compatibility. ",
+            "projectId": 5
+          },
+          {
+            "id": 2,
+            "description": "Implemented microservices architecture with Kafka, Docker, and Kubernetes to enhance system performance.",
+            "projectId": 5
+          },
+          {
+            "id": 3,
+            "description": "Conducted unit testing with JUnit and API testing with Postman, ensuring robust application performance.",
+            "projectId": 5
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "projectName": "",
+        "clientName": "Sixpath Technologies",
+        "location": "Hyderabad, India",
+        "role": "Frontend Developer",
+        "endDate": "07-01-2018",
+        "startDate": "06-01-2017",
+        "description": "",
+        "userId": 10,
+        "projectImageResponseDto": null,
+        "rolesAndResponsibilites": [
+          {
+            "id": 1,
+            "description": "Developed responsive web applications using Angular, Bootstrap, and Material UI to enhance user experience.",
+            "projectId": 6
+          },
+          {
+            "id": 2,
+            "description": "Implemented state management with NgRx & RxJS, ensuring efficient data handling and application performance.",
+            "projectId": 6
+          },
+          {
+            "id": 3,
+            "description": "Integrated Google Maps & Places API for interactive location-based features, improving user engagement.",
+            "projectId": 6
+          },
+          {
+            "id": 4,
+            "description": "Conducted unit and integration testing with Jasmine to maintain high code quality and reliability.",
+            "projectId": 6
+          }
+        ]
+      }
 
     ],
     "socialMediaDto": [
