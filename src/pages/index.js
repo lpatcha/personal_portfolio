@@ -110,7 +110,7 @@ const response = {
           "projectName": "",
           "clientName": "Bank of America",
           "location": "Plano, Texas, United States",
-          "role": "Sr. Java FullStack Developer",
+          "role": "Senior Frontend Developer",
           "endDate": "Present",
           "startDate": "02-01-2025",
           "description": "",
@@ -139,7 +139,7 @@ const response = {
         "projectName": "",
         "clientName": "General Motors",
         "location": "Austin, Texas, USA",
-        "role": "Java FullStack Developer",
+        "role": "Sr. Software Engineer",
         "endDate": "01-01-2025",
         "startDate": "10-01-2022",
         "description": "",
@@ -178,7 +178,7 @@ const response = {
         "projectName": "",
         "clientName": "Williams Sonoma",
         "location": "Costa Mesa, California, United States",
-        "role": "Java Full Stack Developer",
+        "role": "Full Stack Developer",
         "endDate": "09-01-2022",
         "startDate": "07-02-2021",
         "description": "",
@@ -1015,15 +1015,15 @@ export default function Home() {
                 <section className="p-4 rounded-lg bg-stone-50">
                   <div className="flex space-x-2 ">
                     {mailIcon()}
-                    <a href="mailto:lokeshp3098@gmail.com">lokeshp3098@gmail.com</a>
+                    <a href="mailto:lokeshp3098@gmail.com">lokeshpatchala9@gmail.com</a>
                   </div>
                   <div className="flex mt-3 space-x-2 ">
                     {phoneIcon()}
-                    <a href="tel:+13096126680">+1 (309) 612 6680</a>
+                    <a href="tel:+13096126680">+1 (571) 399 6154</a>
                   </div>
                   <div className="flex mt-3 space-x-2 ">
                     {locationIcon()}
-                    <a target = "_blank" href="https://www.google.com/maps/place/2372+Birch+Run+Cir,+Herndon,+VA+20171/@38.9483185,-77.4001867,17z/data=!3m1!4b1!4m6!3m5!1s0x89b647ea4f87b6e9:0xf819ce14ecd0857a!8m2!3d38.9483144!4d-77.3976118!16s%2Fg%2F11rwm0pfv5?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D">2372 Brich Run Circle, Herndon, Virginia</a>
+                    <a target = "_blank" href="https://www.google.com/maps/place/2372+Birch+Run+Cir,+Herndon,+VA+20171/@38.9483185,-77.4001867,17z/data=!3m1!4b1!4m6!3m5!1s0x89b647ea4f87b6e9:0xf819ce14ecd0857a!8m2!3d38.9483144!4d-77.3976118!16s%2Fg%2F11rwm0pfv5?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D">25696 Spring Race Terrace, Aldie, VA</a>
                   </div>
                 </section>
               </div>
